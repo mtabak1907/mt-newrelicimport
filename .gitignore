@@ -12,7 +12,7 @@
 
 # (Optional) Still ignore specific directories
 .vscode/
-demo/
+
 
 # Don't track secret files
 demo/newrelicapi.txt
