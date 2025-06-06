@@ -63,7 +63,7 @@ resource "newrelic_nrql_alert_condition" "mtserver_restart" {
   policy_id = newrelic_alert_policy.existing.id
   name      = "mt-server restart"
   type      = "static"
-  enabled   = false
+  enabled   = true
 
   nrql {
     query = "REPLACE_WITH_QUERY"
