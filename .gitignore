@@ -16,3 +16,5 @@ demo/
 demo/newrelicapi.txt
 demo/terraform.tfvars
 
+# Prevent shell scripts from being tracked
+*.sh
