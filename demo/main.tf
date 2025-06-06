@@ -103,7 +103,7 @@ resource "newrelic_nrql_alert_condition" "mtmonhon" {
 
   critical {
     threshold             = 90
-    threshold_duration    = 301
+    threshold_duration    = 302
     threshold_occurrences = "ALL"
     operator              = "above"
   }
