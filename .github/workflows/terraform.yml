@@ -35,14 +35,15 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init with backend SAS
-        run: terraform init -backend-config="sas_token=$TF_BACKEND_SAS_TOKEN" -lock-timeout=120s
+        run: terraform init -backend-config="sas_token=$TF_BACKEND_SAS_TOKEN"
+             terraform plan -lock-timeout=120s
 
       - name: Wait for state unlock
         run: sleep 10
 
      
-      - name: Terraform Plan
-        run: terraform plan -lock-timeout=120s
+    #  - name: Terraform Plan
+    #    run: terraform plan -lock-timeout=120s
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -lock-timeout=120s
