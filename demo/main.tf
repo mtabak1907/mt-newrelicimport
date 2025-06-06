@@ -52,7 +52,7 @@ resource "newrelic_nrql_alert_condition" "mtdemoenvcpu" {
   lifecycle {
     ignore_changes = [
       nrql,
-      critical,
+      
       warning
 
     ]
