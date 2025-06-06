@@ -1,5 +1,5 @@
 # Ignore everything
-**
+*
 
 # Allow Terraform files everywhere
 !**/*.tf
@@ -23,3 +23,8 @@ demo/terraform.tfvars
 
 # Ignore anything with 'backup' in the filename or path
 *backup*
+
+# Allow folders you want to track
+!demo/
+!prod/
+!staging/
