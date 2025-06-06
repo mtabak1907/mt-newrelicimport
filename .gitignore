@@ -4,6 +4,8 @@
 # Allow Terraform files everywhere
 !**/*.tf
 !**/*.tfvars
+!*.tfvars
+!**/*.tfvars
 
 # Allow .gitignore itself
 !.gitignore
