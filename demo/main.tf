@@ -95,7 +95,7 @@ resource "newrelic_nrql_alert_condition" "mtmonhon" {
   policy_id = newrelic_alert_policy.existing.id
   name      = "MT-MONHON"
   type      = "static"
-  enabled   = false
+  enabled   = true
 
   nrql {
     query = "REPLACE_WITH_QUERY"
