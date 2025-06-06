@@ -31,7 +31,7 @@ resource "newrelic_nrql_alert_condition" "mtdemoenvcpu" {
   policy_id = newrelic_alert_policy.existing.id
   name      = "MT-DEMO-ENV-CPU"
   type      = "static"
-  enabled   = true
+  enabled   = false
 
   nrql {
     query = "REPLACE_WITH_QUERY"
@@ -39,7 +39,7 @@ resource "newrelic_nrql_alert_condition" "mtdemoenvcpu" {
 
   critical {
     threshold             = 90
-    threshold_duration    = 300
+    threshold_duration    = 120
     threshold_occurrences = "ALL"
     operator              = "above"
   }
