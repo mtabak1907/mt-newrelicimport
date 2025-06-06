@@ -8,24 +8,20 @@ on:
       - '**.tf'
       - '**.tfvars'
 
-
-env:
-  TF_BACKEND_SAS_TOKEN: ${{ secrets.AZURE_SAS_TOKEN }}
- 
-      
-
-
 jobs:
   terraform:
     runs-on: ubuntu-latest
 
     defaults:
-     run:
-      working-directory: demo
-
+      run:
+        working-directory: demo
 
     env:
       TF_VAR_newrelic_api_key: ${{ secrets.NEW_RELIC_API_KEY }}
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
     steps:
       - name: Checkout repository
@@ -34,17 +30,11 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - name: Terraform Init with backend SAS
-        run: |
-             terraform init -backend-config="sas_token=$TF_BACKEND_SAS_TOKEN"
-             terraform plan -lock-timeout=120s
+      - name: Terraform Init
+        run: terraform init -reconfigure
 
-      - name: Wait for state unlock
-        run: sleep 10
-
-     
-    #  - name: Terraform Plan
-    #    run: terraform plan -lock-timeout=120s
+      - name: Terraform Plan
+        run: terraform plan -lock-timeout=120s
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -lock-timeout=120s
