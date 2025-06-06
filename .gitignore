@@ -1,0 +1,13 @@
+# Ignore everything
+**
+
+# Allow Terraform files everywhere
+!**/*.tf
+!**/*.tfvars
+
+# Allow .gitignore itself
+!.gitignore
+
+# (Optional) Still ignore specific directories
+.vscode/
+demo/
