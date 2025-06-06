@@ -1,7 +1,7 @@
 terraform {
   backend "azurerm" {
-    storage_account_name = "mtstorage2023"
-    container_name       = "mttfstate"
+    storage_account_name = "mtsauksouth1"
+    container_name       = "mttest"
     key                  = "mt-newrelic.demo-terraform.tfstate"
   }
 }
