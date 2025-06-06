@@ -1,0 +1,23 @@
+Run this with related API user and set policy ID to export conditions to file
+
+
+POLICY_ID="1250096"
+
+newrelic nerdgraph query '{
+  actor {
+    account(id: 2547913) {
+      alerts {
+        nrqlConditionsSearch {
+          nrqlConditions {
+            id
+            name
+            policyId
+          }
+        }
+      }
+    }
+  }
+}' | jq -r --arg pid "$POLICY_ID" '
+  .actor.account.alerts.nrqlConditionsSearch.nrqlConditions[]
+  | select(.policyId == $pid)
+  | [.id, .name] | @tsv' > conditions.tsv

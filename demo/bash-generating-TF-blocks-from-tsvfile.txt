@@ -1,0 +1,35 @@
+#!/bin/bash
+
+while IFS=$'\t' read -r ID NAME; do
+  RESOURCE_NAME=$(echo "$NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd '[:alnum:]_')
+
+  # Append to main.tf
+  cat <<EOF >> main.tf
+
+resource "newrelic_nrql_alert_condition" "$RESOURCE_NAME" {
+  policy_id = newrelic_alert_policy.existing.id
+  name      = "$NAME"
+  type      = "static"
+  enabled   = true
+
+  nrql {
+    query = "REPLACE_WITH_QUERY"
+  }
+
+  critical {
+    threshold             = 90
+    threshold_duration    = 300
+    threshold_occurrences = "ALL"
+    operator              = "above"
+  }
+
+  aggregation_window              = 60
+  aggregation_method              = "event_flow"
+  violation_time_limit_seconds    = 259200
+}
+EOF
+
+  # Generate import command
+  echo "terraform import newrelic_nrql_alert_condition.$RESOURCE_NAME $ID"
+
+done < conditions.tsv
