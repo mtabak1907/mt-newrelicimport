@@ -188,3 +188,9 @@ resource "newrelic_nrql_alert_condition" "mttra" {
   }
 }
 
+###ANOTHER POLICY##
+
+resource "newrelic_alert_policy" "sto_awsdemoapp_alertpolicy" {
+  name = "STO_AWSDemoApp_AlertPolicy" 
+  
+}
