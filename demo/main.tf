@@ -31,7 +31,7 @@ resource "newrelic_nrql_alert_condition" "mtdemoenvcpu" {
   policy_id = newrelic_alert_policy.existing.id
   name      = "MT-DEMO-ENV-CPU"
   type      = "static"
-  enabled   = false
+  enabled   = true
 
   nrql {
     query = "REPLACE_WITH_QUERY"
